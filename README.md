@@ -54,4 +54,4 @@
 
 使用中有任何问题或建议，欢迎提出，可以给个Star。  
 
-# 思路借鉴@pu-signupbot-main
+# 思路源于[@pu-signupbot-main](https://github.com/RedForestLonvor/PU-SignUpBot)
