@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PU 活动报名机器人</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #444;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button.delete {
+            background-color: #f44336;
+        }
+        button.delete:hover {
+            background-color: #d32f2f;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .log-container {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+        .success {
+            color: #4CAF50;
+        }
+        .error {
+            color: #f44336;
+        }
+        .warning {
+            color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PU 活动报名机器人</h1>
+        
+        <!-- 用户管理部分 -->
+        <div class="section">
+            <div class="section-title">用户管理</div>
+            <table id="user-table">
+                <thead>
+                    <tr>
+                        <th>用户名</th>
+                        <th>学校</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="user-list">
+                    <!-- 用户列表将在这里动态生成 -->
+                </tbody>
+            </table>
+            <button id="add-user-btn">添加用户</button>
+        </div>
+        
+        <!-- 添加用户表单 -->
+        <div class="section" id="add-user-form" style="display: none;">
+            <div class="section-title">添加新用户</div>
+            <div class="form-group">
+                <label class="form-label">用户名</label>
+                <input type="text" id="username-input" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label class="form-label">密码</label>
+                <input type="password" id="password-input" placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+                <label class="form-label">学校名称</label>
+                <input type="text" id="school-input" placeholder="请输入学校全称">
+                <button id="search-school-btn">搜索学校</button>
+            </div>
+            <div class="form-group" id="school-select-group" style="display: none;">
+                <label class="form-label">选择学校</label>
+                <select id="school-select"></select>
+            </div>
+            <button id="save-user-btn">保存</button>
+            <button id="cancel-user-btn">取消</button>
+        </div>
+        
+        <!-- 活动报名部分 -->
+        <div class="section">
+            <div class="section-title">活动报名</div>
+            <div class="form-group">
+                <label class="form-label">活动ID</label>
+                <input type="text" id="activity-id-input" placeholder="请输入活动ID">
+            </div>
+            <button id="add-activity-btn">添加活动</button>
+            <div class="form-group">
+                <label class="form-label">活动列表</label>
+                <ul id="activity-list">
+                    <!-- 活动列表将在这里动态生成 -->
+                </ul>
+            </div>
+            <button id="start-signup-btn">开始报名</button>
+        </div>
+        
+        <!-- 日志输出部分 -->
+        <div class="section">
+            <div class="section-title">操作日志</div>
+            <div class="log-container" id="log-container">
+                <!-- 日志将在这里动态生成 -->
+            </div>
+            <button id="clear-log-btn">清空日志</button>
+        </div>
+    </div>
+
+    <!-- 在页面底部引入JavaScript文件 -->
+    <script src="app.js"></script>
+</body>
+</html> 
